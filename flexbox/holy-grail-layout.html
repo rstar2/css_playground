@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HolyGrailLayout with FlexBox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            margin: 0px;
+        }
+
+        body {
+            font-size: 24px;
+            color: white;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flex-header {
+            background-color: #5070B5;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .flex-main {
+            display: flex;
+            flex: 1;
+        }
+
+        .flex-item {
+            overflow-y: auto
+        }
+
+        .flex-nav {
+            background-color: #B95F21;
+            flex: 1 1 5rem;
+            padding-top: 3rem;
+        }
+
+        .flex-article {
+            background-color: #81A43C;
+            flex: 3 3;
+            padding-top: 3rem;
+        }
+
+        .flex-aside {
+            background-color: #B95F21;
+            flex: 1 1 5rem;
+            padding-top: 3rem;
+        }
+
+        .flex-footer {
+            background-color: #5070B5;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        @media all and (max-width: 540px) {
+            .flex-main {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="flex-header">
+        HEADER
+    </header>
+    <main class="flex-main">
+        <nav class="flex-nav flex-item">
+            <div>SIDENAV</div>
+            <hr>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque nostrum earum a ratione officiis perferendis
+            esse magni quasi, unde iusto cumque qui labore molestiae? Exercitationem dicta omnis possimus saepe
+            doloremque?
+        </nav>
+        <article class="flex-article flex-item">
+            <div>MAIN CONTENT</div>
+            <hr>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium blanditiis quam accusantium voluptates
+            ea corrupti, fugiat facere, natus quisquam, placeat nulla ex harum commodi eos nostrum mollitia nam possimus
+            nihil!
+        </article>
+        <aside class="flex-aside flex-item">
+            <div>SIDEBAR</div>
+            <hr>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit ducimus soluta nemo. Ratione
+            provident accusamus culpa rerum, quidem maiores eius explicabo quibusdam. Quasi, fuga magni consequuntur
+            ratione earum sunt pariatur!
+        </aside>
+    </main>
+    <footer class="flex-footer">
+        FOOTER
+    </footer>
+</body>
+
+</html>
