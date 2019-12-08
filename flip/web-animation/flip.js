@@ -31,8 +31,7 @@ export default function flip(el, opts = {}) {
   const player = el.animate(
     [
       {
-        // transformOrigin: "top left",
-        transformOrigin: "top center",
+        transformOrigin: "top left",
         transform: `translate(${deltaX}px, ${deltaY}px) scale(${deltaW}, ${deltaH})`
       },
       {

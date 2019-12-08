@@ -1,11 +1,6 @@
-const optsDef = {
-  duration: 300,
-  easing: "ease-out"
-};
-
 /**
  * @param {HTMLElement}
- * @param {Object} opts
+ * @param {{triggerAction: String|Function, finishCallback:Function}} opts
  */
 export default function flip(el, opts = {}) {
   opts = { ...optsDef, ...opts };
@@ -38,15 +33,18 @@ export default function flip(el, opts = {}) {
   // know all the style changes have
   // taken hold.
   requestAnimationFrame(function() {
-    // Switch on animations.
+    // Switch on animations., e.g CSS class of the sort
+    // .animate-on-transforms {
+    //    transition: all 0.3s ease;
+    // }
     el.classList.add("animate-on-transforms");
 
-    // GO GO GOOOOOO!
+    // GO GO GOOOOOO! - this will trigger the transform animation (because of the el.style.transform change)
     el.style.transform = "";
   });
 
   // Do any tidy up at the end
   // of the animation - Capture the end with transitionend
-  if (opts.finishCallback) 
+  if (opts.finishCallback)
     el.addEventListener("transitionend", opts.finishCallback);
 }
