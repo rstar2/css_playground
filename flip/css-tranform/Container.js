@@ -23,37 +23,38 @@ export default class Container {
   }
 
   appendItem() {
-    const startPositions = this._getStartPositions();
+    const startPositions = this._getRectPositions();
 
     if (!startPositions.length) {
-      // TODO:
+      this._addFirstItem();
       return;
     }
 
     const lastItemPos = startPositions[startPositions.length - 1];
 
+    // add it's "start" position to the current items' positions
+    startPositions.push({
+      left: lastItemPos.left + 10,
+      top: lastItemPos.top
+    });
+
     // create a new item (not yet inserted)
     const item = this._createItem();
-
-    // add it's "start" position to the current items' positions
-    startPositions.push({ left: lastItemPos.left + 10, top: lastItemPos.top });
-
     // append the item
     this._container.append(item);
 
     // calculate again this time the "finished" positions (including those of the newly appended item)
     // Read again. This forces a sync layout, so be careful.
-    const endPositions = this._getStartPositions();
+    const endPositions = this._getRectPositions();
 
-    item.style.opacity = 0; // for better look
     this._animate(startPositions, endPositions, this._container.children);
   }
 
   prependItem() {
-    const startPositions = this._getStartPositions();
+    const startPositions = this._getRectPositions();
 
     if (!startPositions.length) {
-      // TODO:
+      this._addFirstItem();
       return;
     }
 
@@ -73,18 +74,49 @@ export default class Container {
 
     // calculate again this time the "finished" positions (including those of the newly prepended item)
     // Read again. This forces a sync layout, so be careful.
-    const endPositions = this._getStartPositions();
+    const endPositions = this._getRectPositions();
 
-    item.style.opacity = 0; // for better look
+    this._animate(startPositions, endPositions, this._container.children);
+  }
+
+  _addFirstItem() {
+    const item = this._createItem();
+    this._container.append(item);
+
+    const endPositions = this._getRectPositions();
+
+    const startPositions = [
+      {
+        left: endPositions[0].left - 10,
+        top: endPositions[0].top
+      }
+    ];
     this._animate(startPositions, endPositions, this._container.children);
   }
 
   /**
-   *
    * @param {HTMLElement} el
    */
   _removeItem(el) {
-    el.remove();
+    const startPositions = this._getRectPositions();
+
+    // simulate as if removed
+    
+    // whether or no animate to the beginning of the container
+    // e.g as if left === top === 0 or if 'false' to just a little to the left
+    const animateToBeginning  = false;
+    if (!animateToBeginning) {
+      const rect = el.getBoundingClientRect();
+      el.style.position = "absolute";
+      el.style.left = rect.left - 20 + "px";
+      el.style.top = rect.top + "px";
+    } else {
+        el.style.position = "absolute";
+    }
+
+    const endPositions = this._getRectPositions();
+
+    this._animate(startPositions, endPositions, this._container.children, el);
   }
 
   /**
@@ -107,15 +139,15 @@ export default class Container {
   /**
    * @return {{left:Number, top:number}[]}
    */
-  _getStartPositions() {
-    const startPositions = [];
+  _getRectPositions() {
+    const rectPositions = [];
 
     for (const item of this._container.children) {
-      let rect = item.getBoundingClientRect();
-      startPositions.push({ left: rect.left, top: rect.top });
+      const rect = item.getBoundingClientRect();
+      rectPositions.push({ left: rect.left, top: rect.top });
     }
 
-    return startPositions;
+    return rectPositions;
   }
 
   /**
@@ -123,8 +155,9 @@ export default class Container {
    * @param {{left:Number, top:number}[]} startPositions
    * @param {{left:Number, top:number}[]} endPositions
    * @param {HTMLCollection} children
+   * @param {HTMLElement} [removeItem] the item to removed after the animation has finished
    */
-  _animate(startPositions, endPositions, children) {
+  _animate(startPositions, endPositions, children, removeItem) {
     if (
       startPositions.length !== endPositions.length ||
       startPositions.length !== children.length
@@ -149,6 +182,7 @@ export default class Container {
 
       // Invert.
       if (invertX || invertY) {
+        // item.style.opacity = removeItem === item ? 1 : 0; // for better look
         item.style.transform = `translateX(${invertX}px) translateY(${invertY}px)`;
       }
     }
@@ -171,13 +205,17 @@ export default class Container {
 
         // GO GO GOOOOOO! - this will trigger the transform animation
         item.style.transform = "";
-        item.style.opacity = "";
+        item.style.opacity = removeItem === item ? 0 : "";
       }
 
       // Capture the animation end on *only* the last element with transitionend
       const listener = () => {
+        // remove this one-time listener
         lastItem.removeEventListener("transitionend", listener);
+        // globally completed animation
         this._onAnimateComplete();
+        // if there's an item to be removed
+        if (removeItem) removeItem.remove();
       };
       lastItem.addEventListener("transitionend", listener);
     });
