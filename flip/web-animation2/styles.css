@@ -62,26 +62,19 @@
   padding-bottom: 1em;
 }
 
-.module.maximizable {
-  cursor: pointer;
-  transition: box-shadow 0.4s;
-}
 .module.maximizable::before {
   content: "Click me";
   color: #444;
 }
 .module.maximizable:hover {
+  cursor: pointer;
+  transition: box-shadow 0.4s;
   box-shadow: 0 4px 4px rgba(230, 9, 9, 0.2);
 }
 
 .module.maximizable.maximized {
   min-height: 18em;
   margin: 0 1em;
-}
-
-.module.flip-scaling::before {
-  transition: color 0.2s;
-  opacity: 0;
 }
 
 @media (max-width: 1200px) {
