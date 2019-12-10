@@ -182,7 +182,7 @@ export default class Container {
 
       // Invert.
       if (invertX || invertY) {
-        // item.style.opacity = removeItem === item ? 1 : 0; // for better look
+        item.style.opacity = removeItem === item ? 1 : 0; // for better look
         item.style.transform = `translateX(${invertX}px) translateY(${invertY}px)`;
       }
     }

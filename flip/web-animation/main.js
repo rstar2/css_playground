@@ -1,30 +1,63 @@
-import flip from "./flip.js";
+import flip from "./flip.js.js";
 
-const item = document.querySelector(".item");
+const container = document.querySelector(".container");
 
-function animate() {
-  flip(item, { triggerAction: "animated", duration: 3000 });
-}
-setTimeout(animate, 3000);
+document
+  .querySelectorAll(".maximizable")
+  .forEach(maxi =>
+    maxi.addEventListener("click", doAnimation.bind(this, maxi))
+  );
 
-const itemSelected = null;
+
 /**
- * 
- * @param {HTMLElement} item 
+ * @type {HTMLElement}
  */
-function clickListener(item) {
-    if (itemSelected === item) return;
+let expandedMaxi, oldParent, oldSibling;
 
-    if (item) {
-        // Select new item
-    } else {
-        // Deselect current item
+/**
+ *
+ * @param {HTMLElement} maxi
+ */
+function doAnimation(maxi) {
+  // get all the elements that we want to animate , e.g. those that we expect to be changed after
+  // the layout change. These will be:
+  let elements = Array.from(document.querySelectorAll('.module'));
+
+  // if about to expand - remember its current parent
+  if (!expandedMaxi) {
+    oldParent = maxi.parentElement;
+    oldSibling = maxi.nextElementSibling;
+    expandedMaxi = maxi;
+  } else {
+      // TODO: 
+      if (expandedMaxi !== maxi) {
+        throw new Error('Not implemented yet');
+      }
+      expandedMaxi = null;
+  }
+
+  // Do animation
+  flip(
+    elements, // elements to animate layout change of
+
+    function triggerAction() {
+      // called when we should do layout change
+
+      // if to be expanded - append the 'maxi' element to the container
+      // else return it bake to it's old position
+      if (expandedMaxi) {
+        container.insertBefore(expandedMaxi, container.firstChild);
+        expandedMaxi.classList.add("maximized");
+      } else {
+        oldParent.insertBefore(maxi, oldSibling);
+        maxi.classList.remove("maximized");
+      }
+      
+    },
+
+    function onDone() {
+      // called after the animation is done
+      console.log("Done");
     }
-
-    itemSelected = item;
+  );
 }
-
-const items = document.querySelectorAll(".item");
-items.forEach(item => item.addEventListener("click", clickListener.bind(this, item)));
-
-document.querySelector(".overlay").addEventListener("click", clickListener.bind(this, null));
