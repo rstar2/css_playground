@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>FlexBox Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="./styles.css" />
+
+    <template id="video-skeleton">
+      <div class="video-skeleton">
+        <div class="video-details">
+          <div class="rich-thumbnail"></div>
+          <div class="details">
+            <div class="rich-video-title "></div>
+            <div class="video-meta rich-video-meta"></div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </head>
+
+  <body>
+    <div class="header-icon-skeleton">
+      <div class="icon-skeleton"></div>
+      <div class="icon-skeleton"></div>
+      <div class="icon-skeleton"></div>
+    </div>
+
+    <hr />
+
+    <div class="grid-video-skeleton"></div>
+
+    <hr />
+
+    <!-- 
+        This element will have a CSS skeleton because of the CSS selector .auto:empty {...}
+        and the good thing is that it will be automatically removed when there's any content inserted in it 
+    -->
+    <div class="auto"></div>
+
+    <script>
+      const videoSkeletonTemplate = document.getElementById("video-skeleton");
+      const grid = document.querySelector(".grid-video-skeleton");
+      Array.from({ length: 10 }).forEach(() => {
+        const item = videoSkeletonTemplate.content.cloneNode(true);
+        grid.append(item);
+      });
+    </script>
+  </body>
+</html>
