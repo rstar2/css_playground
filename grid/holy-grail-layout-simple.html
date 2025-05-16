@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>HolyGrailLayout with Grid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      * {
+        margin: 0px;
+      }
+
+      body {
+        font-size: 24px;
+        color: white;
+        height: 100vh;
+        text-align: center;
+        display: grid;
+        grid-template-areas:
+          "header header header"
+          "nav article aside"
+          "footer footer footer";
+        grid-template-rows: minmax(7rem, 10rem) auto minmax(7rem, 10rem);
+      }
+
+      .header {
+        background-color: #5070b5;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        grid-area: header;
+      }
+
+      .main {
+      }
+
+      .nav {
+        background-color: #b95f21;
+        padding-top: 3rem;
+        grid-area: nav;
+      }
+
+      .article {
+        background-color: #81a43c;
+        padding-top: 3rem;
+        grid-area: article;
+      }
+
+      .aside {
+        background-color: #b95f21;
+        padding-top: 3rem;
+        grid-area: aside;
+      }
+
+      .footer {
+        background-color: #5070b5;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        grid-area: footer;
+      }
+
+      @media all and (max-width: 540px) {
+        .flex-main {
+          /* flex-direction: column; */
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      HEADER
+    </header>
+    <!-- <main class="main"> -->
+      <nav class="nav">
+        <div>SIDENAV</div>
+        <hr />
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque nostrum
+        earum a ratione officiis perferendis esse magni quasi, unde iusto cumque
+        qui labore molestiae? Exercitationem dicta omnis possimus saepe
+        doloremque?
+      </nav>
+      <article class="article">
+        <div>MAIN CONTENT</div>
+        <hr />
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium
+        blanditiis quam accusantium voluptates ea corrupti, fugiat facere, natus
+        quisquam, placeat nulla ex harum commodi eos nostrum mollitia nam
+        possimus nihil!
+      </article>
+      <aside class="aside">
+        <div>SIDEBAR</div>
+        <hr />
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
+        ducimus soluta nemo. Ratione provident accusamus culpa rerum, quidem
+        maiores eius explicabo quibusdam. Quasi, fuga magni consequuntur ratione
+        earum sunt pariatur!
+      </aside>
+    <!-- </main> -->
+    <footer class="footer">
+      FOOTER
+    </footer>
+  </body>
+</html>
