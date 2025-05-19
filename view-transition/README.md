@@ -1,5 +1,9 @@
 # View Transitions API - Photo Gallery
 
-This demo showcases same page view transitions using the [View Transition API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API).
+Check [full tutorial](https://youtu.be/DtErR1UUyiU)
 
-Check out the [full tutorial](https://youtu.be/DtErR1UUyiU) on my [YouTube channel](https://www.youtube.com/@CSSdeCoder)
+Other:
+
+- https://motion.dev/blog/reacts-experimental-view-transition-api
+- https://www.premieroctet.com/blog/en/view-transition-api-in-next-js-and-react
+- https://github.com/delbaoliveira/next-view-transitions

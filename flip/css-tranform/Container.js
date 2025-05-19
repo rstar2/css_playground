@@ -1,4 +1,4 @@
-import flip from "./flip.js";
+import flip from "./lib/flip.js";
 import { addClass, removeClass } from "./utils.js";
 
 export default class Container {

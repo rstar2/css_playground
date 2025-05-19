@@ -1,4 +1,4 @@
-import flip from "./flip.js.js";
+import flip from "./lib/flip.js";
 
 const container = document.querySelector(".container");
 

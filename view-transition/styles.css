@@ -1,14 +1,14 @@
 :root {
-    --clr-white: hsl(0, 0, 100, 1);
-    --clr-black: hsl(100, 100, 0, 1);
-    --clr-grey: hsl(0, 0%, 48%);
+  --clr-white: hsl(0, 0, 100, 1);
+  --clr-black: hsl(100, 100, 0, 1);
+  --clr-grey: hsl(0, 0%, 48%);
 
-    --ff-primary: "Poppins", sans-serif;
+  --ff-primary: "Poppins", sans-serif;
 
-    --fs-400: 1rem;
-    --fs-500: clamp(1.2rem, 3vw, 1.75rem);
-    --fs-600: clamp(2rem, 5vw, 3rem);
-    --fs-700: clamp(3rem, 7vw, 4rem);
+  --fs-400: 1rem;
+  --fs-500: clamp(1.2rem, 3vw, 1.75rem);
+  --fs-600: clamp(2rem, 5vw, 3rem);
+  --fs-700: clamp(3rem, 7vw, 4rem);
 }
 
 /* Reset */
@@ -22,7 +22,11 @@ html {
   view-transition-name: none;
 }
 
-body, h1, h2, p, figure {
+body,
+h1,
+h2,
+p,
+figure {
   margin-block: 0;
 }
 
@@ -45,10 +49,10 @@ button {
 body {
   min-height: 100vh;
   line-height: 1.5;
-  overflow: hidden; 
+  overflow: hidden;
   display: grid;
   place-content: center;
-} 
+}
 
 main {
   position: relative;
@@ -75,7 +79,8 @@ main {
   view-transition-name: lightbox;
 }
 
-.lightbox:has(.lightbox-image figcaption) {
+/* when image is added in the lightbox the set its z-index  */
+.lightbox:has(.lightbox-image img) {
   z-index: 1;
 }
 
@@ -103,32 +108,46 @@ main {
   }
 }
 
-@keyframes fade-in {
-  from { opacity: 0;}
-  to { opacity: 1;}
-}
-
-@keyframes fade-out {
-  from { opacity: 1;}
-  to { opacity: 0;}
-}
-
-@keyframes slide-up {
-  from { transform: translateY(5rem) }
-  to { transform: translateY(0) }
-}
-
-@keyframes slide-down {
-  from { transform: translateY(0) }
-  to { transform: translateY(5rem) }
-}
-
 ::view-transition-new(lightbox) {
-  animation: 300ms ease 50ms both fade-in, 
-    300ms ease 50ms both slide-up; 
+  animation: 3000ms ease 50ms both fade-in, 3000ms ease 50ms both slide-up;
 }
 
 ::view-transition-old(lightbox) {
-  animation: 300ms ease 50ms both fade-out, 
-    300ms ease 50ms both slide-down; 
+  animation: 300ms ease 50ms both fade-out, 300ms ease 50ms both slide-down;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(5rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(5rem);
+  }
 }

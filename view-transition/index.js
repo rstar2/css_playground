@@ -6,8 +6,11 @@ const figcaption = document.createElement('figcaption')
 // functions to open/close lightbox and fetch caption data
 async function openLightbox(image) {
     const imageID = image.getAttribute('data-thumbID')
-    const data = await fetchData()
-    const caption = data.find((item) => item.id === imageID )
+    const caption = {
+        artist: `Artist: ${imageID}`,
+        artistURL: `Artist URL: ${imageID}`,
+        imageURL: `Image URL: ${imageID}`,
+    }
 
     figcaption.classList.add('figcaption')
     figcaption.innerHTML = `
@@ -23,17 +26,6 @@ function closeLightbox(image) {
 
     galleryParent.append(image)
     lightboxImg.removeChild(figcaption)
-}
-
-async function fetchData() {
-    let response = await fetch('data.json')
-
-    if(!response.ok) {
-        throw 'Something went wrong'
-    }
-
-    let data = await response.json()
-    return data
 }
 
 thumbs.forEach((thumb) => {
