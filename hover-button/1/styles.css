@@ -92,6 +92,8 @@ h2 {
   border: 1px solid;
   border-radius: 100%;
   text-decoration: none;
+  /* Make it transparent as the "outline" automatically appears on focusable elements
+  (e.g., buttons, links, inputs) to indicate focus, unless overridden. */
   outline: none;
   overflow: hidden;
   transition: color 0.3s ease-in-out;
