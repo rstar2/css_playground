@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>HolyGrailLayout with Grid</title>
+    <title>HolyGrailLayout with Grid - Two grid containers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style>
@@ -17,61 +17,53 @@
         height: 100vh;
         text-align: center;
         display: grid;
-        grid-template-areas:
-          "header header header"
-          "nav article aside"
-          "footer footer footer";
-        grid-template-rows: minmax(7rem, 10rem) auto minmax(7rem, 10rem);
+        grid-template-rows: auto 1fr auto;
       }
 
       .header {
         background-color: #5070b5;
         padding-top: 3rem;
         padding-bottom: 3rem;
-        grid-area: header;
       }
 
       .main {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+
+        @media (min-width: 900px) {
+          grid-template-rows: auto;
+          /* grid-template-columns: 200px 1fr 200px; */
+          grid-template-columns: minmax(10rem, 15rem) 1fr minmax(10rem, 15rem);
+        }
       }
 
       .nav {
         background-color: #b95f21;
         padding-top: 3rem;
-        grid-area: nav;
       }
 
       .article {
         background-color: #81a43c;
         padding-top: 3rem;
-        grid-area: article;
       }
 
       .aside {
         background-color: #b95f21;
         padding-top: 3rem;
-        grid-area: aside;
       }
 
       .footer {
         background-color: #5070b5;
         padding-top: 3rem;
         padding-bottom: 3rem;
-        grid-area: footer;
-      }
-
-      @media all and (max-width: 540px) {
-        .flex-main {
-          /* flex-direction: column; */
-        }
       }
     </style>
   </head>
 
   <body>
-    <header class="header">
-      HEADER
-    </header>
-    <!-- <main class="main"> -->
+    <header class="header">HEADER</header>
+
+    <main class="main">
       <nav class="nav">
         <div>SIDENAV</div>
         <hr />
@@ -96,9 +88,8 @@
         maiores eius explicabo quibusdam. Quasi, fuga magni consequuntur ratione
         earum sunt pariatur!
       </aside>
-    <!-- </main> -->
-    <footer class="footer">
-      FOOTER
-    </footer>
+    </main>
+
+    <footer class="footer">FOOTER</footer>
   </body>
 </html>
