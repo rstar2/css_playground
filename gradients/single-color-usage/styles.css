@@ -1,0 +1,57 @@
+html {
+    background-color: chocolate;
+}
+main {
+  color: white;
+  padding: 3rem;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgb(0 0 0 / 0.5) 0 0),
+    url("https://images.unsplash.com/photo-1577818927823-db52d416822d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTQzMTc5NzZ8&ixlib=rb-4.1.0&q=80&w=1200");
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0turn;
+  inherits: true;
+}
+
+.button {
+  text-decoration: none;
+  font: inherit;
+  color: black;
+  padding: 0.5em 1.25em;
+  border-radius: 100vw;
+
+  border: 8px solid transparent;
+  background: linear-gradient(white 0 0) padding-box,
+    conic-gradient(from var(--angle), blue, purple, red, purple, blue)
+      border-box;
+
+  animation: rotate 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.button:hover,
+.button:focus-visible {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  to {
+    --angle: 1turn;
+  }
+}
+
+@layer general-styling {
+  html {
+    color-scheme: dark light;
+    font-family: system-ui;
+    line-height: 1.6;
+  }
+
+  body {
+    font-size: 1.125rem;
+    margin: 1rem;
+  }
+}
