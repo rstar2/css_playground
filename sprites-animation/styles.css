@@ -1,0 +1,33 @@
+@keyframes sprite {
+  from {
+    object-position: 0% 0%;
+  }
+  to {
+    object-position: 100% 0%;
+  }
+}
+
+img {
+  image-rendering: optimizeSpeed;
+  image-rendering: -o-crisp-edges;
+  image-rendering: pixelated;
+}
+
+.trophy {
+  /* NOTE: Must be proportional to the real image's size (which is 2000x800 - 5 parts,
+      e.g. 400x800 per single image */
+  width: 100px;
+  height: 200px;
+
+  object-fit: cover;
+  animation: sprite 1s steps(5, jump-none) infinite;
+}
+
+.like {
+  /* NOTE: Must be proportional to the real image's size (which is 28parts of 100x100 */
+  width: 100px;
+  height: 100px;
+
+  object-fit: cover;
+  animation: sprite 1s steps(28) infinite;
+}
