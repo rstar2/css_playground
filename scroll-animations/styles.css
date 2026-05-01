@@ -1,5 +1,4 @@
 body {
-  height: 2000px;
   padding-top: 50px;
 }
 
@@ -119,5 +118,41 @@ main {
       fadeOut forwards;
     animation-timeline: --tracked-elem, --tracked-elem;
     animation-range: entry, exit;
+  }
+}
+
+/* 4 */
+.images-horizontal {
+  margin-bottom: 50px;
+
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: column;
+  grid-auto-columns: 100px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+
+  img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    scroll-snap-align: center;
+
+    animation: pulsate linear both;
+    animation-timeline: view(x);
+  }
+}
+
+@keyframes pulsate {
+  0%,
+  100% {
+    opacity: 0.5;
+    scale: 0.5;
+  }
+  35%,
+  65% {
+    opacity: 1;
+    scale: 1;
   }
 }
