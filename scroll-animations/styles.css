@@ -1,0 +1,123 @@
+body {
+  height: 2000px;
+  padding-top: 50px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+/* 1 - simple*/
+
+@keyframes expand {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.readingIndicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: red;
+  transform-origin: left center;
+  animation: expand linear;
+  animation-timeline: scroll();
+}
+
+/* 2 */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.images {
+  width: 200px;
+  height: 600px;
+  overflow: auto;
+
+  img {
+    display: block;
+    width: 75%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin-inline: auto;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+
+    animation:
+      fadeIn linear,
+      fadeOut linear;
+    animation-timeline: view(), view();
+    animation-range: entry, exit;
+  }
+}
+
+/* 3 - linked items */
+
+.right {
+  display: flex;
+  --box-size: 200px;
+
+  .right-col_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+  }
+
+  .right-col_right {
+    flex: 1;
+  }
+
+  /* The animation */
+  timeline-scope: --tracked-elem;
+
+  .content {
+    min-height: var(--box-size);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-block: 110vh;
+    padding-inline: 16px;
+    border: 2px solid red;
+    border-radius: 4px;
+
+    /* The animation */
+    view-timeline: --tracked-elem;
+  }
+  .square {
+    position: sticky;
+    top: calc(50vh - var(--box-size) / 2);
+    width: var(--box-size);
+    height: var(--box-size);
+    max-width: 50vw;
+    aspect-ratio: 1 / 1;
+    background: hsl(45deg 100% 50%);
+    border-radius: 4px;
+
+    /* The animation */
+    animation:
+      fadeIn backwards,
+      fadeOut forwards;
+    animation-timeline: --tracked-elem, --tracked-elem;
+    animation-range: entry, exit;
+  }
+}

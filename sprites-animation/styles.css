@@ -1,3 +1,5 @@
+/* https://www.joshwcomeau.com/animation/sprites/ */
+
 @keyframes sprite {
   from {
     object-position: 0% 0%;
@@ -24,10 +26,10 @@ img {
 }
 
 .like {
-  /* NOTE: Must be proportional to the real image's size (which is 28parts of 100x100 */
+  /* NOTE: Must be proportional to the real image's size (which is 29parts of 100x100 */
   width: 100px;
   height: 100px;
 
   object-fit: cover;
-  animation: sprite 1s steps(28) infinite;
+  animation: sprite 1s steps(29, jump-none) infinite;
 }
