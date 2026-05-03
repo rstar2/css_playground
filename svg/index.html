@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sketchy Arrow</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="index.js" type="module"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Simple Arrow</h1>
+      <div class="container">
+        <svg class="arrow" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="
+      M 5,12
+      h 14
+    "
+          />
+          <path
+            d="
+      M 12,5
+      l 7,7
+      l -7,7
+    "
+          />
+        </svg>
+      </div>
+
+      <h1>Sketchy Arrow</h1>
+      <div class="container">
+        <svg class="arrow-sketchy" aria-hidden="true" viewBox="0 0 24 24">
+          <path
+            class="shaft"
+            d="
+        M 5,12
+        h 14
+      "
+          />
+          <path
+            class="tip"
+            d="
+        M 12,5
+        l 7,7
+        l -7,7
+      "
+          />
+        </svg>
+      </div>
+
+      <h1>With Spring Animation</h1>
+      <div class="container">
+        <svg
+          class="arrow-sketchy-animated-spring"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+        >
+          <path
+            class="shaft"
+            d="
+        M 5,12
+        h 14
+      "
+          />
+          <path
+            class="tip"
+            d="
+        M 12,5
+        l 7,7
+        l -7,7
+      "
+          />
+        </svg>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+.container {
+  padding: 2rem;
+  display: grid;
+  place-content: center;
+}
+
+svg {
+  fill: none;
+  width: 64px;
+  height: 64px;
+  stroke: red;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .arrow-sketchy {
+    .shaft,
+    .tip {
+      transition: d 300ms;
+    }
+
+    &:hover .shaft,
+    &:focus-visible .shaft {
+      d: path("\
+        M 5,12\
+        h 17\
+      ");
+    }
+    &:hover .tip,
+    &:focus-visible .tip {
+      d: path("\
+        M 15,7\
+        l 7,5\
+        l -7,5\
+      ");
+    }
+  }
+}
